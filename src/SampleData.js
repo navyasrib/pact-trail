@@ -4,7 +4,7 @@ module.exports = function () {
     return new Promise((resolve, reject) => {
          Request.post({
             "headers": {"content-type": "application/json"},
-            "url": "http://localhost:9895/sample/xyz/pid/8877/uid/3",
+            "url": "http://localhost:8988/sample/xyz/pid/8877/uid/3",
             "body": JSON.stringify({
                 "metadata": {
                     "installationid": "sone id",
@@ -32,12 +32,11 @@ module.exports = function () {
             })
         }, (error, response, body) => {
             if (error) {
-                console.log(error, "ERROR-HERE------------------")
+              reject(error);
             }
             else {
                 resolve(JSON.parse(body));
             }
-
         });
     });
 };

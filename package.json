@@ -4,12 +4,12 @@
   "description": "",
   "main": "src/SampleData.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha src/**/*.pact.js",
+    "pactTest": "export NODE_ENV=pactTest && jest --testRegex \"/*(.pact.js)\" --runInBand --setupFiles ./pact/setup.js --setupFilesAfterEnv ./pact/testWrapper.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@pact-foundation/pact-node": "^8.1.0",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "express": "^4.16.4",
@@ -17,5 +17,9 @@
     "pact": "^4.3.2",
     "path": "^0.12.7",
     "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "@pact-foundation/pact": "^8.0.5",
+    "jest": "^24.5.0"
   }
 }
