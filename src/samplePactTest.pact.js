@@ -34,27 +34,28 @@ describe('Pact', () => {
         }
     };
 
-  describe('test post data', () => {
-    beforeEach(() => {
-      return provider.addInteraction({
-        uponReceiving: 'posts sample data',
-        withRequest: {
-          method: 'POST',
-          path: '/sample/xyz/pid/8877/uid/3',
-          headers: {'Content-Type': 'application/json'},
-          body: reqBody
-        },
-        willRespondWith: {
-          status: 201,
-          headers: {'Content-Type': 'application/json'},
-          body: expectedResponseBody
-        }
-      });
-    });
+    describe('test post data', () => {
+        beforeEach(() => {
+            return provider.addInteraction({
+                state: 'post sample data',
+                uponReceiving: 'posts sample data with give body',
+                withRequest: {
+                    method: 'POST',
+                    path: '/sample/xyz/pid/8877/uid/3',
+                    headers: {'Content-Type': 'application/json'},
+                    body: reqBody
+                },
+                willRespondWith: {
+                    status: 201,
+                    headers: {'Content-Type': 'application/json; charset=utf-8'},
+                    body: expectedResponseBody
+                }
+            });
+        });
 
-    it('posts sample data', async () => {
-      const result = await sampleData();
-       expect(result).toEqual(expectedResponseBody);
+        it('posts sample data', async () => {
+            const result = await sampleData();
+            expect(result).toEqual(expectedResponseBody);
+        });
     });
-  });
 });
